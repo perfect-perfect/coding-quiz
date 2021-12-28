@@ -17,6 +17,8 @@ var startGame = function() {
     buttonContainerEl.textContent = "Go!";
     quizContainerEl.appendChild(buttonContainerEl);
 
+    quizContentEl.appendChild(quizContainerEl);
+
 
     
 }
