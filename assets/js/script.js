@@ -2,6 +2,7 @@ var quizContentEl = document.querySelector("#question-wrapper");
 var questionCounter = 0;
 var playerScore = 100;
 var timerP = document.getElementById("timer");
+var timerInterval;
 var questions = [
     {question: "What does HTML stand for?",
     choices: ["Honda Toyota Minor League","How To Make Language","Hyper Text Markup Language"],
@@ -22,13 +23,14 @@ var timer = function() {
     timerP.textContent=playerScore;
     if (playerScore <= 0) {
         // create this function
+        debugger;
         
         endGame();
         // clearInterval(timerInterval);
         
     }
 
-}
+};
 
 var preGame = function() {
     // creat containers
@@ -51,7 +53,7 @@ var preGame = function() {
 
 
     
-}
+};
 
 
 // code to prompt user if they want to start the quiz
@@ -62,13 +64,13 @@ var promptUser = function(event) {
 
     if (targetEl.matches(".go")) {
         quizContentEl.innerHTML = "";
+        timerInterval = setInterval(timer,'1000');
         quiz();
     }
 
 };
 
 var quiz = function() {
-    var timerInterval = setInterval(timer,'1000')
 
     // this gets the object from the array
     var currentQuestion = questions[questionCounter];
@@ -88,40 +90,47 @@ var quiz = function() {
     })
 
     
-}
+};
 
 var getQuestion = function(){
+    //debugger;
     quizContentEl.innerHTML = "";
-    if (questionCounter < 3) {
-        quiz(); 
-    }
-    else {
-        // stop timer
-        // get score
-        //localStorage.setItem("score", JSON.stringify(playerScore))
-        // send score to local storage
+
+
+    if (questionCounter >= 3) {
         endGame();
-        // clearInterval(timerInterval);
     }
     
+    quiz();
+    
+    
 
-}
+};
 
 var checkAnswer = function() {
+
     var answerClick = this.getAttribute("data-answer")
-    console.log(answerClick);
+
     // console.log(answer);
     if (answerClick!==questions[questionCounter].answer) {
         playerScore = playerScore - 20;
         alert("Wrong! You have been deducted 20 seconds")
 
     }
-    
+
     questionCounter++;
     getQuestion();
-}
+
+};
 
 var endGame = function() {
+    debugger;
+    
+    clearInterval(timerInterval);
+
+    timerP.textContent = "";
+
+
     alert("The game has ended")
 
 
@@ -131,9 +140,10 @@ var endGame = function() {
         highScore = 0;
     }
 
-    if (playerScore <= 0) {
-        alert("Game Over! You have run out of time!")
-    }
+    // cmnd + ? to comment out blocks of code
+    // if (playerScore <= 0) {
+    //     alert("Game Over! You have run out of time!")
+    // }
 
     // if the player has more money than the highscore, the player has a new high score!
     if(playerScore > highScore) {
@@ -148,7 +158,7 @@ var endGame = function() {
     else {
         alert("Your score of " + playerScore + " did not beat the high score of " + highScore);
     }
-}
+};
 
 preGame();
 
