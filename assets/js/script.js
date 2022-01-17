@@ -18,20 +18,20 @@ var questions = [
 
 ]
 
+// timer/score
 var timer = function() {
     playerScore--;
     timerP.textContent=playerScore;
+
     if (playerScore <= 0) {
-        // create this function
-        debugger;
         
         endGame();
-        // clearInterval(timerInterval);
-        
+
     }
 
 };
 
+// creates intro screen to game
 var preGame = function() {
     // creat containers
     var  quizContainerEl = document.createElement("div")
@@ -51,12 +51,10 @@ var preGame = function() {
     buttonEl.setAttribute("data-answer", "go")
     quizContentEl.appendChild(quizContainerEl);
 
-
-    
 };
 
 
-// code to prompt user if they want to start the quiz
+// prompt user if they want to start the quiz
 var promptUser = function(event) {
 
     var targetEl = event.target;
@@ -70,12 +68,12 @@ var promptUser = function(event) {
 
 };
 
+// dynamically creates the questions
 var quiz = function() {
 
     // this gets the object from the array
     var currentQuestion = questions[questionCounter];
 
-    // console.log(currentQuestion);
     var questionEl = document.createElement("div");
     questionEl.textContent = currentQuestion.question;
     quizContentEl.appendChild(questionEl);
@@ -92,26 +90,27 @@ var quiz = function() {
     
 };
 
+// initiates whether we get a question or end the game
 var getQuestion = function(){
-    //debugger;
+    
     quizContentEl.innerHTML = "";
 
 
     if (questionCounter >= 3) {
         endGame();
     }
-    
-    quiz();
-    
-    
+    else {
+        quiz();
+    }
 
+    
 };
 
+// checks if answer is correct
 var checkAnswer = function() {
 
     var answerClick = this.getAttribute("data-answer")
 
-    // console.log(answer);
     if (answerClick!==questions[questionCounter].answer) {
         playerScore = playerScore - 20;
         alert("Wrong! You have been deducted 20 seconds")
@@ -123,16 +122,16 @@ var checkAnswer = function() {
 
 };
 
+// ends game, checks scores, collects info on player if they have beaten high score
 var endGame = function() {
-    debugger;
     
     clearInterval(timerInterval);
 
     timerP.textContent = "";
 
+    quizContentEl.textContent = "";
 
     alert("The game has ended")
-
 
     var highScore = localStorage.getItem("highscore");
 
@@ -140,16 +139,11 @@ var endGame = function() {
         highScore = 0;
     }
 
-    // cmnd + ? to comment out blocks of code
-    // if (playerScore <= 0) {
-    //     alert("Game Over! You have run out of time!")
-    // }
 
     // if the player has more money than the highscore, the player has a new high score!
     if(playerScore > highScore) {
         var playerName = prompt("You have beaten the High Score! Enter intials to save High Score!");
 
-        // possibly insert if variable incase person leaves field blank
         localStorage.setItem("highscore", playerScore);
         localStorage.setItem("name", playerName);
 
@@ -160,6 +154,7 @@ var endGame = function() {
     }
 };
 
+// lauches entry screen
 preGame();
 
 quizContentEl.addEventListener("click", promptUser)
