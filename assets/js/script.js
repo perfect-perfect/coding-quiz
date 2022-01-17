@@ -130,7 +130,7 @@ var endGame = function() {
     timerP.textContent = "";
 
     quizContentEl.textContent = "";
-    
+
     alert("The game has ended")
     var highScore = localStorage.getItem("highscore");
 
@@ -151,8 +151,10 @@ var endGame = function() {
     }
     else {
 
-        alert("Your score of " + playerScore + " did not beat the high score of " + highScore);
-
+        var playerName = prompt("Your score of " + playerScore + " did not beat the high score of " + highScore + ". " + "However, let's still save your most recent score. Please enter your initials!");
+        localStorage.setItem("recentScore", playerScore);
+        localStorage.setItem("recentName", playerName);
+        
     }
 
 };
