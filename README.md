@@ -3,15 +3,15 @@
 
 ## Description
 ---
-A coding quiz that increases its replayability by using and maintaining a high score component. The quiz is both fun and helps reinforce coding principles. You first arrive to the page and prmpted to begin the quiz. Once the quiz begins a timer starts. The timer also simultaeously serves as the scoring component. The faster you complete the quiz the higher your score. 
+A coding quiz that increases its replayability by using and maintaining a high score component. The quiz is both fun and helps reinforce coding principles. You first arrive to the page and can begin the quiz by engaging with the "Go!" button. Once the quiz begins a timer starts. The timer also simultaeously serves as the scoring component. The faster you complete the quiz the higher your score. 
 
 ## Features
 ---
-Uses Jquery and JavaScript to dynamically create HTML. Also utilizes local storage to create a maintain the high score. Also, uses a timer to create a time-limit and to be used as the scoring component.
+Uses Jquery and JavaScript to dynamically create HTML. Also utilizes local storage to create a maintain a high score. Also, uses a timer to create a time-limit that can also be used as a scoring component.
 
 ## Usage
 ---
-To use, go to the website, then cick the "Go!" button. Then questions will propogate one by one. The goal is to complete the quiz as fast as possible. If you beat the high score you sill be asked for your initials.
+To use, go to the website, then cick the "Go!" button. Then questions will propogate one by one. The goal is to complete the quiz as fast as possible. If you beat the high score you will be asked for your initials.
 
 ## link to website/environment
 ---
